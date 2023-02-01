@@ -1,0 +1,25 @@
+<div
+  class="cal-scheduler-event d-flex flex-column flex-wrap"
+  [style.max-width.px]="container.clientWidth - 4"
+  [class.cal-disabled]="event.event.isDisabled"
+  [class.cal-not-clickable]="!event.event.isClickable"
+  [class.cal-starts-before-day]="event.startsBeforeDay"
+  [class.cal-ends-after-day]="event.endsAfterDay"
+  [class.preview-event]="callback.id === -1"
+  [class.cal-overlap-two]="event.event.overlap === 2"
+  [class.cal-overlap-three]="event.event.overlap === 3"
+  (click)="onEventClick(event.event)"
+  [tippy]="tpl"
+>
+  <div *ngIf="displayDetail" class="ml-2 event-text">{{ event.event.title }}</div>
+  <div *ngIf="!displayDetail" class="ml-2 event-text">Callback</div>
+</div>
+
+<ng-template #tpl let-hide>
+  <div class="event-popover">
+    <div *ngIf="displayDetail">Customer : {{ event.event.title }}</div>
+    <div *ngIf="displayDetail">Campaign : {{ callback.campaignShortName }}</div>
+    <div>Time : {{ start }}</div>
+    <div *ngIf="displayDetail"># : {{ callback.callBackNumber | phone: 'CA' }}</div>
+  </div>
+</ng-template>

@@ -1,0 +1,139 @@
+@import 'variables';
+
+::ng-deep.cal-scheduler-view {
+  .cal-scheduler::-webkit-scrollbar {
+    display: none;
+  }
+
+  .cal-scheduler {
+    overflow-y: scroll;
+
+    .cal-container {
+      position: relative;
+      width: calc(100%);
+
+      .now-line {
+        height: 2px;
+        position: relative;
+        width: calc(100%);
+        z-index: 100;
+
+        .mat-icon {
+          position: absolute;
+          left: 65px;
+          top: -5px;
+        }
+      }
+    }
+
+    .aside {
+      flex: 1 0;
+
+      &.cal-scheduler-hour-rows {
+        max-width: 70px;
+      }
+    }
+
+    .cal-scheduler-hour-rows {
+      width: auto !important;
+      border: solid 1px $light-grey-02;
+      overflow: hidden;
+      position: relative;
+
+      .cal-scheduler-hour {
+        display: flex;
+
+        &:nth-child(odd) {
+          background-color: $background-grey;
+        }
+
+        &:not(:last-child) {
+          border-bottom: 1px solid $black-10;
+        }
+
+        .cal-scheduler-time {
+          font-weight: 500;
+          text-align: center;
+
+          .cal-scheduler-time-segment {
+            cursor: default;
+            background-color: $white;
+
+            &:hover {
+              background-color: $background-grey;
+            }
+
+            .seg-dashline {
+              border-top: thin dashed $black-10;
+            }
+          }
+        }
+      }
+    }
+
+    .cal-scheduler-cols {
+      border-top: 1px solid $black-10;
+
+      .cal-scheduler-col {
+        flex: 1 0;
+        position: relative;
+        border-right: 1px solid $black-10;
+        .cal-scheduler-hour {
+          &.cal-odd {
+            background: $white;
+          }
+
+          &.cal-even {
+            background: $background-grey;
+          }
+
+          .cal-scheduler-hour-segments {
+            border-bottom: 1px solid $black-10;
+
+            &.no-border {
+              border-bottom: 0 !important;
+            }
+
+            .seg-dashline {
+              border-top: thin dashed $black-10;
+            }
+
+            .cal-scheduler-hour-segment-clickable:hover {
+              background-color: $black-10;
+              cursor: pointer;
+            }
+
+            .cal-scheduler-hour-segment {
+              flex: 1 0;
+
+              &.no-border {
+                border-bottom: 0 !important;
+              }
+
+              &.cal-disabled {
+                background-color: $black-trans;
+                pointer-events: none;
+              }
+
+              .cal-scheduler-time {
+                font-weight: bold;
+                font-size: 0.7em;
+                color: $black-40;
+                cursor: default;
+              }
+            }
+          }
+        }
+
+        .cal-scheduler-event-container {
+          flex: 1 0;
+          position: absolute;
+
+          &.zoom-on-hover {
+            transition: all ease-out 0.2s;
+          }
+        }
+      }
+    }
+  }
+}

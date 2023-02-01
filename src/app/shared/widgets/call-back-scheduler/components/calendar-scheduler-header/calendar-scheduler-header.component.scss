@@ -1,0 +1,49 @@
+@import 'variables';
+
+.cal-scheduler-headers {
+  margin-bottom: 3px;
+  border: 1px solid $black-10;
+  background-color: $white;
+
+  .aside {
+    flex: 1 0;
+
+    &.cal-header-clock {
+      max-width: 70px;
+    }
+  }
+
+  .cal-header {
+    flex: 1;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: default;
+
+    &:not(:last-child) {
+      border-right: 1px solid $black-10;
+    }
+
+    &:hover {
+      background-color: $black-10;
+    }
+
+    &.cal-today {
+      background-color: $mid-green;
+    }
+
+    &.cal-weekend span {
+      color: $red;
+    }
+
+    &-day {
+      font-weight: 500;
+    }
+
+    &-date {
+      font-weight: 400;
+      opacity: 0.5;
+    }
+  }
+}

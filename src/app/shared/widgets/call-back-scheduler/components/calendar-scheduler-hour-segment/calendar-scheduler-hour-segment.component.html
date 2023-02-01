@@ -1,0 +1,16 @@
+<div
+  class="cal-scheduler-hour-segment d-flex flex-column flex-wrap"
+  [ngClass]="segment?.cssClass"
+  [class.has-events]="segment.events.length > 0"
+  [class.cal-cancelled]="segment.isCancelled"
+  [class.cal-disabled]="segment.isDisabled"
+  [style.backgroundColor]="segment.backgroundColor"
+  [class.seg-dashline]="segment.date.getMinutes() === 30"
+  [class.cal-scheduler-hour-segment-clickable]="segmentClickable"
+  [style.height.px]="hourSegmentHeight"
+  (click)="onSegmentClick($event, segment)"
+>
+  <div class="cal-scheduler-time unselectable" *ngIf="showHour && segment.events.length === 0">
+    {{ segment.date | calendarDate: 'dayViewHour':locale }}
+  </div>
+</div>

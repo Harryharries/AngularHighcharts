@@ -1,0 +1,89 @@
+<div class="cal-scheduler-view">
+  <app-calendar-scheduler-header
+    [days]="days"
+    [locale]="'en-US'"
+    (dayHeaderClicked)="dayHeaderClicked.emit($event)"
+    (viewDaysChanged)="viewDaysChanged($event)"
+  >
+  </app-calendar-scheduler-header>
+
+  <div id="calender-body" class="cal-scheduler d-flex flex-wrap" #calendarContainer>
+    <div class="d-flex flex-wrap cal-container">
+      <!-- Now Line -->
+      <div [style.top.px]="timelineTop" class="now-line d-flex align-items-center red-bg w-100">
+        <app-mat-icon class="red icon-size-12">circle</app-mat-icon>
+      </div>
+      <div class="cal-scheduler-hour-rows aside">
+        <div class="cal-scheduler-hour d-flex flex-column flex-wrap align-center horizontal" *ngFor="let hour of hours">
+          <div class="cal-scheduler-time d-flex flex-column w-100 flex-wrap">
+            <div class="cal-scheduler-time-segment" *ngFor="let segment of hour.segments">
+              <div [style.height.px]="hourSegmentHeight" [class.seg-dashline]="segment.date.getMinutes() === 30">
+                <div *ngIf="segment.date.getMinutes() === 0">
+                  {{ segment.date | calendarDate: 'dayViewHour':'en-US' }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cal-scheduler-cols aside d-flex flex-wrap" #dayColumns>
+        <div
+          class="cal-scheduler-col d-flex flex-column flex-wrap"
+          *ngFor="let day of view.days"
+          [ngClass]="day?.cssClass"
+          [style.backgroundColor]="day.backgroundColor"
+        >
+          <div
+            #eventContainer
+            class="cal-scheduler-event-container d-flex flex-column flex-wrap"
+            *ngFor="let event of day.events"
+            [ngClass]="event.event?.cssClass"
+            [style.top.px]="event.top"
+            [style.height.px]="event.height"
+            [style.left.%]="event.left"
+            [style.width.%]="event.width"
+          >
+            <app-calendar-scheduler-event
+              [day]="day"
+              [event]="event"
+              [container]="eventContainer"
+              [displayEventDetails]="displayEventDetails"
+              (eventClicked)="eventClicked.emit($event)"
+            >
+            </app-calendar-scheduler-event>
+          </div>
+
+          <div
+            class="cal-scheduler-hour"
+            *ngFor="let hour of day.hours; let i = index"
+            [class.cal-even]="i % 2 === 0"
+            [class.cal-odd]="i % 2 === 1"
+            [ngClass]="hour.cssClass"
+            [style.backgroundColor]="hour.backgroundColor"
+            [class.cal-past]="day.isPast"
+            [class.cal-today]="day.isToday"
+            [class.cal-future]="day.isFuture"
+            [class.cal-weekend]="day.isWeekend"
+            [class.cal-in-month]="day.inMonth"
+            [class.cal-out-month]="!day.inMonth"
+          >
+            <div class="cal-scheduler-hour-segments d-flex flex-column flex-wrap">
+              <app-calendar-scheduler-hour-segment
+                *ngFor="let segment of hour.segments"
+                [day]="day"
+                [segment]="segment"
+                [locale]="'en'"
+                [hourSegmentHeight]="hourSegmentHeight"
+                [showHour]="showSegmentHour"
+                [segmentClickable]="segmentClickable"
+                (segmentClicked)="segmentClickedEmit($event)"
+                (highlyOverlapedSegement)="previewEventHighlyOverlapedEmit($event)"
+              >
+              </app-calendar-scheduler-hour-segment>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

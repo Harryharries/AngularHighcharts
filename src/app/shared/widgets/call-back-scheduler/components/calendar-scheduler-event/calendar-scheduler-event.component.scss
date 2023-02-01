@@ -1,0 +1,55 @@
+@import 'variables';
+
+.event-popover {
+  background-color: $white;
+  width: 250px;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.cal-scheduler-event {
+  flex: 1 0;
+  border: 1px solid $light-red;
+  background-color: $light-blue;
+  border-radius: 0.3em;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: calc(100% - 4px);
+  filter: brightness(100%);
+  backface-visibility: hidden;
+  cursor: pointer;
+
+  .event-text {
+    line-height: 16px;
+  }
+
+  &.cal-overlap-two {
+    background-color: $warning-orange;
+  }
+
+  &.cal-overlap-three {
+    background-color: $warning-red;
+  }
+
+  &.preview-event {
+    border: 1px dashed $black-60;
+    background-color: $white;
+  }
+
+  &.cal-disabled,
+  &.cal-cancelled {
+    background-color: $black-60 !important;
+    color: $light-grey-02;
+    filter: grayscale(100%);
+  }
+
+  &.cal-not-clickable {
+    cursor: not-allowed !important;
+  }
+
+  &:not(.cal-disabled):not(.cal-cancelled):hover {
+    filter: brightness(95%);
+  }
+}
