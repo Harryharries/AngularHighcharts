@@ -3,7 +3,7 @@
     [days]="days"
     [locale]="'en-US'"
     (dayHeaderClicked)="dayHeaderClicked.emit($event)"
-    (viewDaysChanged)="viewDaysChanged($event)"
+    (viewDaysChanged)="viewDaysChanged()"
   >
   </app-calendar-scheduler-header>
 
@@ -29,7 +29,7 @@
       <div class="cal-scheduler-cols aside d-flex flex-wrap" #dayColumns>
         <div
           class="cal-scheduler-col d-flex flex-column flex-wrap"
-          *ngFor="let day of view.days"
+          *ngFor="let day of view?.days"
           [ngClass]="day?.cssClass"
           [style.backgroundColor]="day.backgroundColor"
         >

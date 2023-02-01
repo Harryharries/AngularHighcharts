@@ -165,12 +165,12 @@ export class CallBackSchedulerComponent extends BaseOnDestroy implements OnInit,
     super.ngOnDestroy();
   }
 
-  viewDaysChanged($event: number): void {
-    this.viewDays = $event;
+  viewDaysChanged(): void {
+    this.viewDays = 7;
     this.refreshAll();
   }
 
-  segmentClickedEmit($event: { segment: { segment: SchedulerViewHourSegment; } | undefined; }): void {
+  segmentClickedEmit($event: any): void {
     this.segmentClicked.emit($event.segment);
   }
 

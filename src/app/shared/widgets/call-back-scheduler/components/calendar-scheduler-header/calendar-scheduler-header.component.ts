@@ -7,9 +7,9 @@ import { SchedulerViewDay } from '../../models';
   styleUrls: ['./calendar-scheduler-header.component.scss'],
 })
 export class CalendarSchedulerHeaderComponent implements OnInit {
-  @Input() days: SchedulerViewDay[];
+  @Input() days: SchedulerViewDay[] | undefined;
 
-  @Input() locale: string;
+  @Input() locale: string | undefined;
 
   @Output() dayHeaderClicked: EventEmitter<{ day: SchedulerViewDay }> = new EventEmitter<{ day: SchedulerViewDay }>();
 

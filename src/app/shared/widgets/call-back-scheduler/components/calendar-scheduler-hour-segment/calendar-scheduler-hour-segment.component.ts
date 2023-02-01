@@ -7,15 +7,20 @@ import { SchedulerViewDay, SchedulerViewHourSegment } from '../../models';
   styleUrls: ['./calendar-scheduler-hour-segment.component.scss'],
 })
 export class CalendarSchedulerHourSegmentComponent implements OnInit {
-  @Input() title: string;
+  @Input()
+  title!: string;
 
-  @Input() day: SchedulerViewDay;
+  @Input()
+  day!: SchedulerViewDay;
 
-  @Input() segment: SchedulerViewHourSegment;
+  @Input()
+  segment!: SchedulerViewHourSegment;
 
-  @Input() locale: string;
+  @Input()
+  locale!: string;
 
-  @Input() hourSegmentHeight: number;
+  @Input()
+  hourSegmentHeight!: number;
 
   @Input() showHour = false;
 
